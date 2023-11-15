@@ -4,12 +4,29 @@ import './css/styles.css';
 
 function displayQuestion(answers) {
   console.log(answers);
+  let userAnswers = [];
   let i = 1;
   document.querySelector("button#next").addEventListener("click", () => {
-    let question = document.querySelector(`#q${i}`);
-    document.querySelector(`#q${(i - 1)}`).remove();
-    question.classList.remove('hidden');
-    i++;
+    if(i < 10) {
+      let userAnswer = document.querySelector(`input[name="trivia"]:checked`).value;
+      let question = document.querySelector(`#q${i}`);
+      document.querySelector(`#q${(i - 1)}`).remove();
+      question.classList.remove('hidden');
+      userAnswers.push(userAnswer);
+      i++;
+      console.log(userAnswers);
+    } else {
+      let totalRight = 0;
+      i = 0;
+      answers.forEach((answer) => {
+        console.log("answer: " + answer);
+        console.log("userAnswer: " + userAnswers[i]);
+        if(answer === userAnswers[i]) {
+          totalRight++;
+        }
+      });
+      document.querySelector("p#displayResult").innerText = "You got " + totalRight + " right!";
+    }
   });
 }
 
