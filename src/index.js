@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 
 function displayQuestion(answers) {
-  console.log(answers);
   let userAnswers = [];
   let i = 1;
   document.querySelector("button#next").addEventListener("click", () => {
@@ -14,13 +13,10 @@ function displayQuestion(answers) {
       question.classList.remove('hidden');
       userAnswers.push(userAnswer);
       i++;
-      console.log(userAnswers);
     } else {
       let totalRight = 0;
       i = 0;
       answers.forEach((answer) => {
-        console.log("answer: " + answer);
-        console.log("userAnswer: " + userAnswers[i]);
         if(answer === userAnswers[i]) {
           totalRight++;
         }
@@ -43,7 +39,6 @@ function printTrivia(apiResponse) {
     div.appendChild(h3);
     correctAnswers.push(question.correct_answer);
     i++;
-    console.log(decodedQuestion);
   });
   let question = document.querySelector(`#q0`);
   question.classList.remove('hidden');
@@ -60,7 +55,7 @@ function getTrivia(e) {
     if(request.status === 200) {
       printTrivia(response);
     } else {
-      console.log("error");
+      window.alert("status: failed");
     }
   });
   request.open("GET", url, true);
