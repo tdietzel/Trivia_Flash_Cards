@@ -48,6 +48,7 @@ function printTrivia(apiResponse) {
 function getTrivia(e) {
   e.preventDefault();
   let request = new XMLHttpRequest ();
+  // https://opentdb.com/api_config.php
   const url = "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=boolean&encode=url3986";
 
   request.addEventListener("loadend", () => {
